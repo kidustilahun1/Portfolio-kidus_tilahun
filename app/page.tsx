@@ -8,21 +8,21 @@ import {
   FaBars, 
   FaTimes 
 } from "react-icons/fa";
-import { useState } from "react";
+import React, { useState } from "react";
 import emailjs from "@emailjs/browser";
 
 
 export default function PortfolioWebsite() {
   const [darkMode, setDarkMode] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const sendEmail = (e) => {
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
   e.preventDefault();
 
   emailjs
     .sendForm(
       "service_ntwgsi3",
       "template_wfkuef2",
-      e.target,
+      e.target as HTMLFormElement,
       "-Ua9yGhM3oEJE7WBt"
     )
     .then(
@@ -35,7 +35,7 @@ export default function PortfolioWebsite() {
       }
     );
 
-  e.target.reset();
+  (e.target as HTMLFormElement).reset();
 };
   const projects = [
     {
@@ -389,7 +389,7 @@ export default function PortfolioWebsite() {
 
   <textarea
     name="message"
-    rows="5"
+    rows={5}
     placeholder="Your Message"
     required
     className="w-full px-5 py-4 rounded-2xl bg-black/30 border border-white/10 focus:border-cyan-400 outline-none text-white resize-none"
